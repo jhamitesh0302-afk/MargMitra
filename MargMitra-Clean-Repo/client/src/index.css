@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --forest-primary: #0B5D4A;
+    --forest-dark: #073B32;
+    --forest-soft: #63B98A;
+    --forest-light: #DDF3E7;
+    --canvas-bg: #F7F8F5;
+    --charcoal: #12212B;
+    --muted-text: #68756F;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--canvas-bg);
+    color: var(--charcoal);
+  }
+}
+
+/* Custom design utility classes matching MargMitra design system */
+.bg-forest-primary { background-color: #0B5D4A; }
+.bg-forest-dark { background-color: #073B32; }
+.bg-forest-soft { background-color: #63B98A; }
+.bg-forest-light { background-color: #DDF3E7; }
+.bg-canvas { background-color: #F7F8F5; }
+
+.text-forest-primary { color: #0B5D4A; }
+.text-forest-dark { color: #073B32; }
+.text-forest-soft { color: #63B98A; }
+.text-charcoal { color: #12212B; }
+.text-muted-custom { color: #68756F; }
+
+.border-forest-primary { border-color: #0B5D4A; }
+.border-forest-soft { border-color: #63B98A; }
+.border-forest-light { border-color: #DDF3E7; }
+.border-subtle { border-color: #E2E8E5; }
+
+/* Custom Card & Surface Styling */
+.logistics-card {
+  background: #FFFFFF;
+  border: 1px solid #E6ECE8;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(11, 93, 74, 0.04), 0 4px 12px rgba(18, 33, 43, 0.03);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logistics-card:hover {
+  border-color: #C5DCD1;
+  box-shadow: 0 4px 6px -1px rgba(11, 93, 74, 0.06), 0 10px 20px -3px rgba(18, 33, 43, 0.05);
+}
+
+/* Map container overrides */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  z-index: 10;
+}
+
+/* Pulsing map pin animation */
+@keyframes pinPulse {
+  0% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.35); opacity: 0.3; }
+  100% { transform: scale(1); opacity: 0.9; }
+}
+
+.pulse-ring {
+  animation: pinPulse 2.4s ease-in-out infinite;
+}
+
+/* Moving truck along route animation */
+@keyframes routeDash {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+
+.animated-route-line {
+  stroke-dasharray: 8, 8;
+  animation: routeDash 1.8s linear infinite;
+}
+
+/* Truck wheels rotation */
+@keyframes wheelSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.truck-wheel {
+  transform-origin: center;
+  animation: wheelSpin 1.2s linear infinite;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .animated-route-line {
+    animation: none;
+  }
+  .pulse-ring {
+    animation: none;
+  }
+  .truck-wheel {
+    animation: none;
+  }
+}
